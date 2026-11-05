@@ -18,6 +18,11 @@ class DropdownPage(BasePage):
     def option(self, option):
         return self.xpath(f"//option[text() = '{option}']")
 
+    def open_page(self):
+        self.open("/dropdown")
+        self.check_open_page()
+        return self
+
     def check_open_page(self):
         assert self.title.text == "Dropdown List", \
             "Заголовок страницы не сходится"

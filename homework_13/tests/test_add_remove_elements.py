@@ -1,17 +1,12 @@
 import pytest
 
-from homework_13.pages.main_page import MainPage
-
-
 class TestAddRemoveElement:
 
     @pytest.mark.basic
-    def test_add_remove_elements(self, start_ui):
-        main_page = MainPage(start_ui)
-
+    def test_add_remove_elements(self, setup_driver, main_page):
         (
             main_page
-                .check_open_page()
+                .open_page()
                 .move_add_remove_elements()
                 .click_add_button()
                 .click_add_button()

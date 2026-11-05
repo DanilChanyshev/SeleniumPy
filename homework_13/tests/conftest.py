@@ -1,7 +1,7 @@
 import pytest
 
+from homework_13.pages.main_page import MainPage
 
 @pytest.fixture()
-def start_ui(setup):
-    setup.get("https://the-internet.herokuapp.com")
-    yield setup
+def main_page(setup_driver):
+    return MainPage(setup_driver)

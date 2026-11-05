@@ -19,6 +19,11 @@ class NotificationMessagePage(BasePage):
     def action_message(self):
         return self.css("#flash")
 
+    def open_page(self):
+        self.open("/notification_message_rendered")
+        self.check_open_page()
+        return self
+
     def check_open_page(self):
         assert self.title.text == "Notification Message"
         return self

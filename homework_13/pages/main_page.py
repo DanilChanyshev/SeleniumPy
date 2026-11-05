@@ -47,8 +47,8 @@ class MainPage(BasePage):
     def tab_data_table(self):
         return self.xpath("//a[text() = 'Sortable Data Tables']")
 
-    def open_page(self, url):
-        self.open(url)
+    def open_page(self):
+        self.open()
         self.check_open_page()
         return self
 

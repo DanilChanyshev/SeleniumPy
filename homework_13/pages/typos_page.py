@@ -11,6 +11,11 @@ class TyposPage(BasePage):
     def actual_text(self):
         return self.lxpath("//p")[1]
 
+    def open_page(self):
+        self.open("/typos")
+        self.check_open_page()
+        return self
+
     def check_open_page(self):
         assert self.title.text == "Typos",\
             "Заголовок не сходится"

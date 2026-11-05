@@ -15,6 +15,11 @@ class AddRemovePage(BasePage):
     def delete_buttons(self):
         return self.lcss("#elements button")
 
+    def open_page(self):
+        self.open("/add_remove_elements/")
+        self.check_open_page()
+        return self
+
     def check_open_page(self):
         assert self.title.text == "Add/Remove Elements", \
             "Заголовок страницы не сходится"

@@ -11,6 +11,11 @@ class Checkboxes(BasePage):
     def checkboxes(self):
         return self.lcss("input[type='checkbox']")
 
+    def open_page(self):
+        self.open("/checkboxes")
+        self.check_open_page()
+        return self
+
     def check_open_page(self):
         assert self.title.text == "Checkboxes", \
             "Checkboxes is not open"

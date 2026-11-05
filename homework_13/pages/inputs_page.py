@@ -13,6 +13,11 @@ class InputsPage(BasePage):
     def input(self):
         return self.css("input")
 
+    def open_page(self):
+        self.open("/inputs")
+        self.check_title()
+        return self
+
     def check_title(self):
         assert self.title.text == "Inputs"
         return self

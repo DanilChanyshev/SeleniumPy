@@ -33,6 +33,11 @@ class HoversPage(BasePage):
     def user_3(self):
         return self.xpath("//h5[text() = 'name: user3']/following-sibling::*")
 
+    def open_page(self):
+        self.open("/hovers")
+        self.check_open_page()
+        return self
+
     def check_open_page(self):
         assert self.title.text == "Hovers"
         return self

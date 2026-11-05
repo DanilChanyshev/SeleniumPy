@@ -1,16 +1,13 @@
 import pytest
 
-from homework_13.pages.main_page import MainPage
-
-
 class TestDropdown:
 
     @pytest.mark.basic
-    def test_dropdown(self, start_ui):
-        main_page = MainPage(start_ui)
-
+    def test_dropdown(self, setup_driver, main_page):
         (
-            main_page.move_dropdown()
+            main_page
+                .open_page()
+                .move_dropdown()
                 .check_dropdown_start()
                 .selected_option("Option 1")
                 .selected_option("Option 2")

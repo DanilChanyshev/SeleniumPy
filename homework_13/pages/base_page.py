@@ -8,12 +8,14 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class BasePage:
 
+    BASE_URL = "https://the-internet.herokuapp.com"
+
     def __init__(self, driver):
         self.driver = driver
         self.actions = ActionChains(self.driver)
 
-    def open(self, url):
-        self.driver.get(url)
+    def open(self, endpoint = "/"):
+        self.driver.get(f"{self.BASE_URL}{endpoint}")
 
     def css(self, locator) -> WebElement:
         return self.driver.find_element(By.CSS_SELECTOR, locator)
