@@ -3,6 +3,7 @@ import requests
 from homework_13.pages.base_page import BasePage
 from homework_13.test_data.users import Users
 
+
 class HoversPage(BasePage):
 
     @property
