@@ -12,7 +12,7 @@ class HoversPage(BasePage):
 
     @property
     def pht_user_1(self):
-        return self.xpath("//h5[text() = 'name: user1']/../..//img")
+        return self.xpath("//div[@class = 'figure' and .//h5[text() = 'name: user1']]//img")
 
     @property
     def user_1(self):
@@ -20,7 +20,7 @@ class HoversPage(BasePage):
 
     @property
     def pht_user_2(self):
-        return self.xpath("//h5[text() = 'name: user2']/../..//img")
+        return self.xpath("//div[@class = 'figure' and .//h5[text() = 'name: user2']]//img")
 
     @property
     def user_2(self):
@@ -28,7 +28,7 @@ class HoversPage(BasePage):
 
     @property
     def pht_user_3(self):
-        return self.xpath("//h5[text() = 'name: user3']/../..//img")
+        return self.xpath("//div[@class = 'figure' and .//h5[text() = 'name: user3']]//img")
 
     @property
     def user_3(self):
