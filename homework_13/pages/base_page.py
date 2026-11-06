@@ -1,3 +1,4 @@
+import requests
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
@@ -39,3 +40,9 @@ class BasePage:
         WebDriverWait(self.driver, 5).until(
             expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, locator))
         )
+
+    def check_status_code(self, status_code):
+        response = requests.get(self.driver.current_url)
+        assert response.status_code != status_code, \
+            f"Статус-код страницы не соответствует:\n Actual: {response.status_code} \n Expected: {status_code}"
+        return self

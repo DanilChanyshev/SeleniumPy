@@ -1,3 +1,5 @@
+import allure
+
 from homework_13.pages.base_page import BasePage
 
 
@@ -18,16 +20,19 @@ class DropdownPage(BasePage):
     def option(self, option):
         return self.xpath(f"//option[text() = '{option}']")
 
+    @allure.step("Открыть страницу 'dropdown'")
     def open_page(self):
         self.open("/dropdown")
         self.check_open_page()
         return self
 
+    @allure.step("Проверить, что страница открылась и заголовок отображается")
     def check_open_page(self):
         assert self.title.text == "Dropdown List", \
             "Заголовок страницы не сходится"
         return self
 
+    @allure.step("Проверить начальную выбранную опцию")
     def check_dropdown_start(self):
         first_option = self.options[0]
         assert len(self.options) == 3, \
@@ -37,6 +42,7 @@ class DropdownPage(BasePage):
             "Начальный параметр не выбран"
         return self
 
+    @allure.step("Выбрать опцию {option}")
     def selected_option(self, option):
         self.dropdown.click()
         selected_option = self.option(option)

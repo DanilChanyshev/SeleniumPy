@@ -1,4 +1,4 @@
-import requests
+import allure
 
 from homework_13.pages.base_page import BasePage
 from homework_13.test_data.users import Users
@@ -34,15 +34,18 @@ class HoversPage(BasePage):
     def user_3(self):
         return self.xpath("//h5[text() = 'name: user3']/following-sibling::*")
 
+    @allure.step("Открыть страницу 'hovers'")
     def open_page(self):
         self.open("/hovers")
         self.check_open_page()
         return self
 
+    @allure.step("Проверить, что страница открылась и заголовок отображается")
     def check_open_page(self):
         assert self.title.text == "Hovers"
         return self
 
+    @allure.step("Перейти на страницу {actual_user}")
     def click_user(self, actual_user:Users):
 
         match actual_user:
@@ -66,10 +69,4 @@ class HoversPage(BasePage):
             .perform()
         )
 
-        return self
-
-    def check_status_code(self):
-        response = requests.get(self.driver.current_url)
-        assert response.status_code != 404, \
-            f"Ссылка вернула ошибку 404: {self.driver.current_url}"
         return self

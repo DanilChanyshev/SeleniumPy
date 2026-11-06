@@ -1,3 +1,5 @@
+import allure
+
 from homework_13.pages.base_page import BasePage
 
 
@@ -12,16 +14,19 @@ class TyposPage(BasePage):
     def actual_text(self):
         return self.lxpath("//p")[1]
 
+    @allure.step("Открыть страницу 'typos'")
     def open_page(self):
         self.open("/typos")
         self.check_open_page()
         return self
 
+    @allure.step("Проверить, что страница открылась и заголовок отображается")
     def check_open_page(self):
         assert self.title.text == "Typos",\
             "Заголовок не сходится"
         return self
 
+    @allure.step("Перезагрузка страницы до получения правильного написания")
     def check_text_in_page(self):
         count = 0
         while True:

@@ -1,3 +1,5 @@
+import allure
+
 from homework_13.pages.base_page import BasePage
 
 
@@ -19,20 +21,24 @@ class NotificationMessagePage(BasePage):
     def action_message(self):
         return self.css("#flash")
 
+    @allure.step("Открыть страницу 'notification_message_rendered'")
     def open_page(self):
         self.open("/notification_message_rendered")
         self.check_open_page()
         return self
 
+    @allure.step("Проверить, что страница открылась и заголовок отображается")
     def check_open_page(self):
         assert self.title.text == "Notification Message"
         return self
 
+    @allure.step("Нажаить на флеш ''new message''")
     def click_new_message(self):
         self.button_new_message.click()
         self.wait_until("#flash")
         return self
 
+    @allure.step("Проверить полученное сообщение")
     def check_flash_message(self):
         expected_message = [
             "Action unsuccesful, please try again",
