@@ -29,10 +29,11 @@ class TyposPage(BasePage):
     @allure.step("Перезагрузка страницы до получения правильного написания")
     def check_text_in_page(self):
         count = 0
-        while True:
+        for count in range(5):
             if self.actual_text.text == self.PASS_MESSAGE:
-                print(f"Количество перезагрузок страницы: {count}")
                 break
-            count += 1
             self.refresh()
+        assert self.actual_text.text == self.PASS_MESSAGE, \
+            f"Expected: {self.PASS_MESSAGE}\n Actual: {self.actual_text.text}"
+        print(f"Количество перезагрузок страницы: {count}")
         return self
