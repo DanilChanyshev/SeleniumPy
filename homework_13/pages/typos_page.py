@@ -1,0 +1,39 @@
+import allure
+
+from homework_13.pages.base_page import BasePage
+
+
+class TyposPage(BasePage):
+    PASS_MESSAGE = "Sometimes you'll see a typo, other times you won't."
+
+    @property
+    def title(self):
+        return self.xpath("//h3")
+
+    @property
+    def actual_text(self):
+        return self.lxpath("//p")[1]
+
+    @allure.step("Открыть страницу 'typos'")
+    def open_page(self):
+        self.open("/typos")
+        self.check_open_page()
+        return self
+
+    @allure.step("Проверить, что страница открылась и заголовок отображается")
+    def check_open_page(self):
+        assert self.title.text == "Typos",\
+            "Заголовок не сходится"
+        return self
+
+    @allure.step("Перезагрузка страницы до получения правильного написания")
+    def check_text_in_page(self):
+        count = 0
+        for count in range(5):
+            if self.actual_text.text == self.PASS_MESSAGE:
+                break
+            self.refresh()
+        assert self.actual_text.text == self.PASS_MESSAGE, \
+            f"Expected: {self.PASS_MESSAGE}\n Actual: {self.actual_text.text}"
+        print(f"Количество перезагрузок страницы: {count}")
+        return self
